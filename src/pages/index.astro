@@ -1,11 +1,32 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="夏目" description="これはただの記録。">
+  <section>
+    <h1 style="font-size: 3rem; text-align: center; margin-bottom: 1rem; font-weight: 600;">夏目</h1>
+    <p style="font-size: 1.2rem; text-align: center; margin-bottom: 4.5rem; opacity: 0.8;">
+      これはただの記録。
+    </p>
+
+    <nav>
+      <ul style="list-style: none; padding: 0; text-align: center;">
+        <li style="margin-bottom: 2.5rem;">
+          <a href="#" style="font-size: 1.1rem; font-family: var(--font-serif-en); opacity: 0.75;">post</a>
+        </li>
+        <li style="margin-bottom: 2.5rem;">
+          <a href="#" style="font-size: 1.1rem; font-family: var(--font-serif-en); opacity: 0.75;">live</a>
+        </li>
+        <li style="margin-bottom: 2.5rem;">
+          <a href="/log" style="font-size: 1.1rem; font-family: var(--font-serif-en); opacity: 0.75;">log</a>
+        </li>
+        <li style="margin-bottom: 2.5rem;">
+          <a href="#" style="font-size: 1.1rem; font-family: var(--font-serif-en); opacity: 0.75;">goods</a>
+        </li>
+        <li style="margin-bottom: 2.5rem;">
+          <a href="#" style="font-size: 1.1rem; font-family: var(--font-serif-en); opacity: 0.75;">asset</a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+</BaseLayout>
