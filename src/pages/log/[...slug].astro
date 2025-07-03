@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout 
+  title={`${entry.data.title} | 夏目`} 
+  description={entry.data.description || `${entry.data.title}についての記録`}
+>
+  <article>
+    <header style="
+      text-align: left;
+      margin-bottom: 4rem;
+    ">
+      <h1 style="
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.4;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      ">
+        {entry.data.title}
+      </h1>
+      <time style="
+        font-size: 0.9rem;
+        opacity: 0.6;
+        letter-spacing: 0.02em;
+        font-family: var(--font-serif-en);
+        display: block;
+      ">
+        {entry.data.pubDate.toLocaleDateString('ja-JP', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        })}
+      </time>
+      {entry.data.updatedDate && (
+        <p style="
+          font-size: 0.9rem;
+          opacity: 0.5;
+          margin-top: 0.5rem;
+          margin-bottom: 0;
+          letter-spacing: 0.02em;
+          font-family: var(--font-serif-en);
+        ">
+          更新: {entry.data.updatedDate.toLocaleDateString('ja-JP', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </p>
+      )}
+    </header>
+    
+    <div style="
+      line-height: 1.9;
+      font-size: 1.1rem;
+      letter-spacing: 0.01em;
+      margin-bottom: 5rem;
+    " class="prose">
+      <Content />
+    </div>
+  </article>
+  
+  <nav style="
+    text-align: center;
+  ">
+    <a href="/log" style="
+      font-size: 1rem;
+      opacity: 0.7;
+      font-family: var(--font-serif-en);
+      letter-spacing: 0.05em;
+      margin-right: 2rem;
+    ">
+      ← 記録一覧
+    </a>
+    <a href="/" style="
+      font-size: 1rem;
+      opacity: 0.7;
+      font-family: var(--font-serif-en);
+      letter-spacing: 0.05em;
+    ">
+      home
+    </a>
+  </nav>
+</BaseLayout>

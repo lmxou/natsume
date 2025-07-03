@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title="記録 | 夏目" description="これまでの静かな記録の一覧">
+  <section>
+    <div style="text-align: center; margin-bottom: 5rem;">
+      <h1 style="
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-align: center;
+      ">
+        記録
+      </h1>
+      <p style="
+        font-size: 1rem;
+        opacity: 0.7;
+        letter-spacing: 0.02em;
+        text-align: center;
+      ">
+        これまでの静かな思索の軌跡
+      </p>
+    </div>
+    
+    <div style="max-width: 600px; margin: 0 auto;">
+      {allPosts.length === 0 ? (
+        <div style="text-align: center; margin-top: 4rem;">
+          <p style="
+            font-size: 1.1rem;
+            opacity: 0.6;
+            letter-spacing: 0.02em;
+            line-height: 1.8;
+          ">
+            まだ記録がありません。<br>
+            最初の記録を書き始めましょう。
+          </p>
+        </div>
+      ) : (
+        allPosts.map((post) => (
+          <article style="
+            margin-bottom: 4.5rem;
+          ">
+            <time style="
+              font-size: 0.9rem;
+              opacity: 0.6;
+              margin-bottom: 1rem;
+              display: block;
+              letter-spacing: 0.02em;
+              font-family: var(--font-serif-en);
+            ">
+              {post.data.pubDate.toLocaleDateString('ja-JP', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+              }).replace(/\//g, '.')}
+            </time>
+            <h2 style="
+              font-size: 1.4rem;
+              margin: 0 0 1rem 0;
+              line-height: 1.6;
+              letter-spacing: 0.02em;
+              font-weight: 400;
+            ">
+              <a href={`/log/${post.slug}/`} style="
+                color: var(--color-text);
+                text-decoration: none;
+                border-bottom: 1px solid transparent;
+                transition: all 0.3s ease;
+                opacity: 0.85;
+              ">
+                {post.data.title}
+              </a>
+            </h2>
+            {post.data.description && (
+              <p style="
+                margin: 0;
+                font-size: 1rem;
+                opacity: 0.7;
+                line-height: 1.7;
+                letter-spacing: 0.01em;
+              ">
+                {post.data.description}
+              </p>
+            )}
+          </article>
+        ))
+      )}
+    </div>
+
+    <div style="text-align: center; margin-top: 5rem;">
+      <a href="/" style="
+        font-size: 1rem;
+        opacity: 0.7;
+        font-family: var(--font-serif-en);
+        letter-spacing: 0.05em;
+        border-bottom: 1px solid transparent;
+        transition: all 0.3s ease;
+      ">
+        ← home
+      </a>
+    </div>
+  </section>
+</BaseLayout>
