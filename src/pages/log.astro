@@ -9,20 +9,20 @@ const allPosts = (await getCollection('blog')).sort(
 
 <BaseLayout title="記録 | 夏目" description="これまでの静かな記録の一覧">
   <section>
-    <div style="text-align: center; margin-bottom: 5rem;">
+    <div style="text-align: center; margin-bottom: 5.5rem;">
       <h1 style="
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
+        font-size: 2.3rem;
+        margin-bottom: 1.8rem;
         font-weight: 600;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.06em;
         text-align: center;
       ">
         記録
       </h1>
       <p style="
-        font-size: 1rem;
+        font-size: 1.05rem;
         opacity: 0.7;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.025em;
         text-align: center;
       ">
         これまでの静かな思索の軌跡
@@ -31,11 +31,11 @@ const allPosts = (await getCollection('blog')).sort(
     
     <div style="max-width: 600px; margin: 0 auto;">
       {allPosts.length === 0 ? (
-        <div style="text-align: center; margin-top: 4rem;">
+        <div style="text-align: center; margin-top: 4.5rem;">
           <p style="
             font-size: 1.1rem;
             opacity: 0.6;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.025em;
             line-height: 1.8;
           ">
             まだ記録がありません。<br>
@@ -45,14 +45,14 @@ const allPosts = (await getCollection('blog')).sort(
       ) : (
         allPosts.map((post) => (
           <article style="
-            margin-bottom: 4.5rem;
+            margin-bottom: 5rem;
           ">
             <time style="
               font-size: 0.9rem;
               opacity: 0.6;
               margin-bottom: 1rem;
               display: block;
-              letter-spacing: 0.02em;
+              letter-spacing: 0.025em;
               font-family: var(--font-serif-en);
             ">
               {post.data.pubDate.toLocaleDateString('ja-JP', {
@@ -62,18 +62,18 @@ const allPosts = (await getCollection('blog')).sort(
               }).replace(/\//g, '.')}
             </time>
             <h2 style="
-              font-size: 1.4rem;
-              margin: 0 0 1rem 0;
+              font-size: 1.2rem;
+              margin: 0 0 1.2rem 0;
               line-height: 1.6;
-              letter-spacing: 0.02em;
-              font-weight: 400;
+              letter-spacing: 0.025em;
+              font-weight: 500;
             ">
               <a href={`/log/${post.slug}/`} style="
                 color: var(--color-text);
                 text-decoration: none;
                 border-bottom: 1px solid transparent;
                 transition: all 0.3s ease;
-                opacity: 0.85;
+                opacity: 0.75;
               ">
                 {post.data.title}
               </a>
@@ -83,8 +83,8 @@ const allPosts = (await getCollection('blog')).sort(
                 margin: 0;
                 font-size: 1rem;
                 opacity: 0.7;
-                line-height: 1.7;
-                letter-spacing: 0.01em;
+                line-height: 1.8;
+                letter-spacing: 0.015em;
               ">
                 {post.data.description}
               </p>
@@ -94,7 +94,7 @@ const allPosts = (await getCollection('blog')).sort(
       )}
     </div>
 
-    <div style="text-align: center; margin-top: 5rem;">
+    <div style="text-align: center; margin-top: 5.5rem;">
       <a href="/" style="
         font-size: 1rem;
         opacity: 0.7;
