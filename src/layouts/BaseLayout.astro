@@ -16,10 +16,14 @@ const { title, description } = Astro.props;
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     
-    <!-- Google Fonts: Source Serif Pro -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <!-- 最適化されたフォント読み込み -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&display=swap" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&display=swap">
+</noscript>
     
     <!-- SEO対策の基本設定 -->
     <meta property="og:title" content={title} />
@@ -30,11 +34,20 @@ const { title, description } = Astro.props;
     
     <style is:global>
       :root {
-        --font-serif-en: 'Source Serif Pro', serif;
-        --font-mincho-jp: 'BIZ UDPMincho', '游明朝', 'Yu Mincho', 'ヒラギノ明朝 ProN W3', serif;
-        --color-background: #e5e8f7;
-        --color-text: #0039a2;
-      }
+  --font-serif-en: 'Source Serif Pro', serif;
+  --font-mincho-jp: 'BIZ UDPMincho', '游明朝', 'Yu Mincho', 'ヒラギノ明朝 ProN W3', serif;
+  --color-background: #e5e8f7;
+  --color-text: #0039a2;
+  
+  /* レンダリング最適化 */
+  font-display: swap;
+}
+
+/* フォント描画最適化 */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
       body {
         font-family: var(--font-mincho-jp);
@@ -173,6 +186,50 @@ const { title, description } = Astro.props;
   
   nav li {
     margin-bottom: 2.5rem !important;
+  }
+}
+/* 記事内画像の美しい表示設定 */
+.prose img {
+  /* PC: 文章幅より少し広く、左右対称に中央配置 */
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  margin-right: -20px;
+  height: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  display: block;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0, 57, 162, 0.06);
+}
+
+/* 画像キャプション（イタリック文字）のスタイル */
+.prose p em {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-top: -2rem;
+  margin-bottom: 3rem;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .prose img {
+    /* スマホ: 画面幅いっぱいに表示 */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .prose p em {
+    margin-top: -1.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.85rem;
   }
 }
     </style>
