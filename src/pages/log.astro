@@ -62,22 +62,22 @@ const allPosts = (await getCollection('blog')).sort(
               }).replace(/\//g, '.')}
             </time>
             <h2 style="
-              font-size: 1.2rem;
-              margin: 0 0 1.2rem 0;
-              line-height: 1.6;
-              letter-spacing: 0.025em;
-              font-weight: 500;
-            ">
-              <a href={`/log/${post.slug}/`} style="
-                color: var(--color-text);
-                text-decoration: none;
-                border-bottom: 1px solid transparent;
-                transition: all 0.3s ease;
-                opacity: 0.75;
-              ">
-                {post.data.title}
-              </a>
-            </h2>
+  font-size: 1.2rem;
+  margin: 0 0 1.2rem 0;
+  line-height: 1.6;
+  letter-spacing: 0.025em;
+  font-weight: 600;
+">
+  <a href={`/log/${post.slug}/`} style="
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+    opacity: 0.85;
+  ">
+    {post.data.title}
+  </a>
+</h2>
             {post.data.description && (
               <p style="
                 margin: 0;
