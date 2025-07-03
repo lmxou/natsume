@@ -31,6 +31,38 @@ const { title, description } = Astro.props;
     {description && <meta property="og:description" content={description} />}
     <meta property="og:locale" content="ja_JP" />
     <link rel="canonical" href={Astro.url} />
+
+    <!-- SEO強化 -->
+<meta name="author" content="夏目" />
+<meta name="robots" content="index, follow" />
+
+<!-- OGP設定（SNSシェア用） -->
+<meta property="og:title" content={title} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:site_name" content="夏目" />
+<meta property="og:locale" content="ja_JP" />
+{description && <meta property="og:description" content={description} />}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+{description && <meta name="twitter:description" content={description} />}
+
+<!-- JSON-LD構造化データ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "夏目",
+  "description": "これはただの記録。",
+  "url": {Astro.site},
+  "author": {
+    "@type": "Person",
+    "name": "夏目"
+  }
+}
+</script>
     
     <style is:global>
       :root {
