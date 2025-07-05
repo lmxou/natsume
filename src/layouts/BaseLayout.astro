@@ -133,6 +133,7 @@ const { title, description } = Astro.props;
     letter-spacing: 0.02em;
     color: var(--color-text);
     line-height: 1.5;
+    text-align: left; /* 見出しは左揃えを維持 */
   }
 
   .prose h3 {
@@ -143,6 +144,7 @@ const { title, description } = Astro.props;
     letter-spacing: 0.02em;
     color: var(--color-text);
     line-height: 1.5;
+    text-align: left; /* 見出しは左揃えを維持 */
   }
 
   .prose h4 {
@@ -153,6 +155,7 @@ const { title, description } = Astro.props;
     letter-spacing: 0.02em;
     color: var(--color-text);
     line-height: 1.5;
+    text-align: left; /* 見出しは左揃えを維持 */
   }
 
   .prose p {
@@ -160,6 +163,11 @@ const { title, description } = Astro.props;
     color: var(--color-text);
     line-height: 1.9;
     text-indent: 1em;
+    
+    /* 左右ガタガタ改善のための追加 */
+    text-align: justify;           /* 両端揃え */
+    text-justify: inter-ideograph; /* 日本語に最適化 */
+    word-break: auto-phrase;       /* 自然な改行位置 */
   }
 
   .prose blockquote {
@@ -198,6 +206,11 @@ const { title, description } = Astro.props;
   .prose li {
     margin-bottom: 0.8rem;
     line-height: 1.8;
+    
+    /* リスト項目にも両端揃えを適用 */
+    text-align: justify;
+    text-justify: inter-ideograph;
+    word-break: auto-phrase;
   }
 
   .prose strong {
@@ -240,36 +253,35 @@ const { title, description } = Astro.props;
   }
 
   /* 外部リンクの美しい自動識別（サイト全体適用） */
-a[href^="http"]:not([href*="lmxou.me"])::after {
-  content: "↗";
-  font-size: 0.75em;     /* 0.9em → 0.75em に変更 */
-  opacity: 0.6;
-  margin-left: 0.12em;   /* 0.15em → 0.12em に微調整 */
-  transition: opacity 0.3s ease;
-  vertical-align: text-top;
-  font-family: var(--font-serif-en);
-  letter-spacing: 0;
-}
+  a[href^="http"]:not([href*="lmxou.me"])::after {
+    content: " ↗";
+    font-size: 0.75em;
+    opacity: 0.6;
+    margin-left: 0.12em;
+    transition: opacity 0.3s ease;
+    vertical-align: text-top;
+    font-family: var(--font-serif-en);
+    letter-spacing: 0;
+  }
 
-/* ホバー時の控えめな変化 */
-a[href^="http"]:not([href*="lmxou.me"]):hover::after {
-  opacity: 0.8;
-}
+  /* ホバー時の控えめな変化 */
+  a[href^="http"]:not([href*="lmxou.me"]):hover::after {
+    opacity: 0.8;
+  }
 
-/* 内部リンクには適用しない */
-a[href^="/"]::after,
-a[href^="#"]::after,
-a[href^="mailto:"]::after {
-  content: none;
-}
+  /* 内部リンクには適用しない */
+  a[href^="/"]::after,
+  a[href^="#"]::after,
+  a[href^="mailto:"]::after {
+    content: none;
+  }
 
-/* 記事内での外部リンクの特別な配慮 */
-.prose a[href^="http"]:not([href*="lmxou.me"])::after {
-  font-size: 0.7em;      /* 0.85em → 0.7em に変更 */
-  opacity: 0.65;
-  margin-left: 0.11em;   /* 0.13em → 0.11em に微調整 */
-}
-
+  /* 記事内での外部リンクの特別な配慮 */
+  .prose a[href^="http"]:not([href*="lmxou.me"])::after {
+    font-size: 0.7em;
+    opacity: 0.65;
+    margin-left: 0.11em;
+  }
 
   /* レスポンシブデザイン */
   @media (max-width: 768px) {
@@ -284,6 +296,33 @@ a[href^="mailto:"]::after {
     
     nav li {
       margin-bottom: 2.5rem !important;
+    }
+
+    /* スマホでの文字サイズ調整 */
+    body {
+      font-size: 0.95rem;    /* デフォルトより5%小さく */
+    }
+
+    .prose p {
+      font-size: 0.95rem;    /* 本文サイズ調整 */
+      line-height: 1.85;     /* 行間も微調整 */
+      text-align: justify;   /* スマホでも両端揃えを維持 */
+    }
+
+    .prose li {
+      font-size: 0.95rem;    /* リスト項目も調整 */
+    }
+
+    .prose h2 {
+      font-size: 1.2rem;     /* 見出しも微調整 */
+    }
+
+    .prose h3 {
+      font-size: 1.1rem;
+    }
+
+    .prose h4 {
+      font-size: 1.05rem;
     }
 
     .prose img {
