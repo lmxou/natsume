@@ -259,7 +259,7 @@ const { title, description } = Astro.props;
     opacity: 0.6;
     margin-left: 0.12em;
     transition: opacity 0.3s ease;
-    vertical-align: text-top;
+    vertical-align: baseline;  /* text-top → baseline に変更 */
     font-family: var(--font-serif-en);
     letter-spacing: 0;
   }
@@ -281,6 +281,7 @@ const { title, description } = Astro.props;
     font-size: 0.7em;
     opacity: 0.65;
     margin-left: 0.11em;
+    vertical-align: baseline;  /* この行を追加 */
   }
 
   /* レスポンシブデザイン */
