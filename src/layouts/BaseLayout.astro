@@ -254,12 +254,12 @@ const { title, description } = Astro.props;
 
   /* 外部リンクの美しい自動識別（サイト全体適用） */
   a[href^="http"]:not([href*="lmxou.me"])::after {
-    content: " ↗";
+    content: "↗";
     font-size: 0.75em;
     opacity: 0.6;
     margin-left: 0.12em;
     transition: opacity 0.3s ease;
-    vertical-align: baseline;  /* text-top → baseline に変更 */
+    vertical-align: -0.08em;  /* baseline → -0.08em に変更 */
     font-family: var(--font-serif-en);
     letter-spacing: 0;
   }
@@ -281,7 +281,7 @@ const { title, description } = Astro.props;
     font-size: 0.7em;
     opacity: 0.65;
     margin-left: 0.11em;
-    vertical-align: baseline;  /* この行を追加 */
+    vertical-align: -0.10em;  /* baseline → -0.10em に変更 */
   }
 
   /* レスポンシブデザイン */
