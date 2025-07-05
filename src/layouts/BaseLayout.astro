@@ -284,62 +284,48 @@ const { title, description } = Astro.props;
   }
 
   /* レスポンシブデザイン */
-  @media (max-width: 768px) {
-    .container {
-      padding: 40px 15px;
-    }
-    
-    h1 {
-      font-size: 2.5rem !important;
-      letter-spacing: 0.03em !important;
-    }
-    
-    nav li {
-      margin-bottom: 2.5rem !important;
-    }
-
-    /* スマホでの文字サイズ調整（理想的なバランス） */
-    body {
-      font-size: 0.97rem;    /* 0.95rem → 0.97rem に変更 */
-    }
-
-    .prose p {
-      font-size: 0.97rem;    /* 0.95rem → 0.97rem に変更 */
-      line-height: 1.87;     /* 1.85 → 1.87 に微調整 */
-      text-align: justify;   /* スマホでも両端揃えを維持 */
-    }
-
-    .prose li {
-      font-size: 0.97rem;    /* 0.95rem → 0.97rem に変更 */
-    }
-
-    .prose h2 {
-      font-size: 1.25rem;    /* 1.2rem → 1.25rem に変更 */
-    }
-
-    .prose h3 {
-      font-size: 1.15rem;    /* 1.1rem → 1.15rem に変更 */
-    }
-
-    .prose h4 {
-      font-size: 1.05rem;    /* 変更なし */
-    }
-
-    .prose img {
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
-      margin-top: 2.5rem;
-      margin-bottom: 2.5rem;
-    }
-    
-    .prose p em {
-      margin-top: -1.5rem;
-      margin-bottom: 2.5rem;
-      font-size: 0.85rem;
-    }
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 15px;
   }
+  
+  h1 {
+    font-size: 2.5rem !important;
+    letter-spacing: 0.03em !important;
+  }
+  
+  nav li {
+    margin-bottom: 2.5rem !important;
+  }
+
+  /* スマホでも両端揃えを維持（ガタガタ修正の継続） */
+  .prose p {
+    text-align: justify;
+    text-justify: inter-ideograph;
+    word-break: auto-phrase;
+  }
+
+  .prose li {
+    text-align: justify;
+    text-justify: inter-ideograph;
+    word-break: auto-phrase;
+  }
+
+  .prose img {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .prose p em {
+    margin-top: -1.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.85rem;
+  }
+}
 </style>
 
   </head>
