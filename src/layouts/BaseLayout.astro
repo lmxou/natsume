@@ -240,35 +240,36 @@ const { title, description } = Astro.props;
   }
 
   /* 外部リンクの美しい自動識別（サイト全体適用） */
-  a[href^="http"]:not([href*="lmxou.me"])::after {
-    content: " ↗";
-    font-size: 0.9em;
-    opacity: 0.6;
-    margin-left: 0.15em;
-    transition: opacity 0.3s ease;
-    vertical-align: text-top;
-    font-family: var(--font-serif-en);
-    letter-spacing: 0;
-  }
+a[href^="http"]:not([href*="lmxou.me"])::after {
+  content: " ↗";
+  font-size: 0.75em;     /* 0.9em → 0.75em に変更 */
+  opacity: 0.6;
+  margin-left: 0.12em;   /* 0.15em → 0.12em に微調整 */
+  transition: opacity 0.3s ease;
+  vertical-align: text-top;
+  font-family: var(--font-serif-en);
+  letter-spacing: 0;
+}
 
-  /* ホバー時の控えめな変化 */
-  a[href^="http"]:not([href*="lmxou.me"]):hover::after {
-    opacity: 0.8;
-  }
+/* ホバー時の控えめな変化 */
+a[href^="http"]:not([href*="lmxou.me"]):hover::after {
+  opacity: 0.8;
+}
 
-  /* 内部リンクには適用しない */
-  a[href^="/"]::after,
-  a[href^="#"]::after,
-  a[href^="mailto:"]::after {
-    content: none;
-  }
+/* 内部リンクには適用しない */
+a[href^="/"]::after,
+a[href^="#"]::after,
+a[href^="mailto:"]::after {
+  content: none;
+}
 
-  /* 記事内での外部リンクの特別な配慮 */
-  .prose a[href^="http"]:not([href*="lmxou.me"])::after {
-    font-size: 0.85em;
-    opacity: 0.65;
-    margin-left: 0.13em;
-  }
+/* 記事内での外部リンクの特別な配慮 */
+.prose a[href^="http"]:not([href*="lmxou.me"])::after {
+  font-size: 0.7em;      /* 0.85em → 0.7em に変更 */
+  opacity: 0.65;
+  margin-left: 0.11em;   /* 0.13em → 0.11em に微調整 */
+}
+
 
   /* レスポンシブデザイン */
   @media (max-width: 768px) {
