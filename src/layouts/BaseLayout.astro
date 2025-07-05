@@ -241,7 +241,7 @@ const { title, description } = Astro.props;
 
   /* 外部リンクの美しい自動識別（サイト全体適用） */
 a[href^="http"]:not([href*="lmxou.me"])::after {
-  content: " ↗";
+  content: "↗";
   font-size: 0.75em;     /* 0.9em → 0.75em に変更 */
   opacity: 0.6;
   margin-left: 0.12em;   /* 0.15em → 0.12em に微調整 */
