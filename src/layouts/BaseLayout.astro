@@ -274,6 +274,37 @@ const { title, description } = Astro.props;
     margin-bottom: 2.5rem;
     font-size: 0.85rem;
   }
+  /* 外部リンクの美しい自動識別（サイト全体適用） */
+a[href^="http"]:not([href*="lmxou.me"])::after {
+  content: " ↗";
+  font-size: 0.9em;
+  opacity: 0.6;
+  margin-left: 0.15em;
+  transition: opacity 0.3s ease;
+  vertical-align: text-top;
+  font-family: var(--font-serif-en);
+  letter-spacing: 0;
+}
+
+/* ホバー時の控えめな変化 */
+a[href^="http"]:not([href*="lmxou.me"]):hover::after {
+  opacity: 0.8;
+}
+
+/* 内部リンクには適用しない */
+a[href^="/"]::after,
+a[href^="#"]::after,
+a[href^="mailto:"]::after {
+  content: none;
+}
+
+/* 記事内での外部リンクの特別な配慮 */
+.prose a[href^="http"]:not([href*="lmxou.me"])::after {
+  font-size: 0.85em;
+  opacity: 0.65;
+  margin-left: 0.13em;
+}
+
 }
     </style>
   </head>
