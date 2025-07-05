@@ -69,244 +69,239 @@ const { title, description } = Astro.props;
 }
 </script>
     
-    <style is:global>
-      :root {
-  --font-serif-en: 'Source Serif Pro', serif;
-  --font-mincho-jp: 'BIZ UDPMincho', '游明朝', 'Yu Mincho', 'ヒラギノ明朝 ProN W3', serif;
-  --color-background: #e5e8f7;
-  --color-text: #0039a2;
-  
-  /* レンダリング最適化 */
-  font-display: swap;
-}
+<style is:global>
+  :root {
+    --font-serif-en: 'Source Serif Pro', serif;
+    --font-mincho-jp: 'BIZ UDPMincho', '游明朝', 'Yu Mincho', 'ヒラギノ明朝 ProN W3', serif;
+    --color-background: #e5e8f7;
+    --color-text: #0039a2;
+    
+    /* レンダリング最適化 */
+    font-display: swap;
+  }
 
-/* フォント描画最適化 */
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  /* フォント描画最適化 */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-      body {
-        font-family: var(--font-mincho-jp);
-        background-color: var(--color-background);
-        color: var(--color-text);
-        margin: 0;
-        padding: 0;
-        line-height: 1.8;
-      }
+  body {
+    font-family: var(--font-mincho-jp);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.8;
+  }
 
-      .container {
-        max-width: 700px;
-        width: 90%;
-        margin: 0 auto;
-        padding: 60px 20px;
-      }
-
-      h1, h2, h3 {
-        font-family: var(--font-serif-en);
-        color: var(--color-text);
-        font-weight: 400;
-      }
-
-      a {
-        color: var(--color-text);
-        text-decoration: none;
-        border-bottom: 1px solid transparent;
-        transition: all 0.3s ease;
-        }
-
-      a:hover {
-        opacity: 1.0;
-        border-bottom: 1px solid var(--color-text);
-        }
-
-      section {
-        margin-bottom: 80px;
-      }
-
-/* 記事見出しのスタイル（余白メインの静かなデザイン） */
-.prose h2 {
-  font-size: 1.3rem;
-  margin-top: 5rem;
-  margin-bottom: 2.5rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--color-text);
-  line-height: 1.5;
-}
-
-.prose h3 {
-  font-size: 1.2rem;
-  margin-top: 4rem;
-  margin-bottom: 2rem;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  color: var(--color-text);
-  line-height: 1.5;
-}
-
-.prose h4 {
-  font-size: 1.1rem;
-  margin-top: 3.5rem;
-  margin-bottom: 1.8rem;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  color: var(--color-text);
-  line-height: 1.5;
-}
-
-.prose p {
-  margin-bottom: 1.8rem;
-  color: var(--color-text);
-  line-height: 1.9;
-  text-indent: 1em;
-}
-
-.prose blockquote {
-  padding-left: 2rem;
-  margin: 3.5rem 0;
-  opacity: 0.75;
-  font-style: italic;
-  color: var(--color-text);
-  font-size: 1.05rem;
-  line-height: 1.8;
-  letter-spacing: 0.01em;
-  position: relative;
-}
-
-.prose blockquote::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(to bottom, 
-    transparent 0%, 
-    var(--color-text) 20%, 
-    var(--color-text) 80%, 
-    transparent 100%);
-  opacity: 0.25;
-}
-
-.prose ul, .prose ol {
-  margin: 2.5rem 0;
-  padding-left: 2rem;
-  color: var(--color-text);
-}
-
-.prose li {
-  margin-bottom: 0.8rem;
-  line-height: 1.8;
-}
-
-.prose strong {
-  font-weight: 600;
-  color: var(--color-text);
-}
-
-.prose em {
-  font-style: italic;
-  color: var(--color-text);
-  opacity: 0.9;
-}
-
-      /* レスポンシブデザイン */
-@media (max-width: 768px) {
   .container {
-    padding: 40px 15px;
+    max-width: 700px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 60px 20px;
   }
-  
-  h1 {
-    font-size: 2.5rem !important;
-    letter-spacing: 0.03em !important;
-  }
-  
-  nav li {
-    margin-bottom: 2.5rem !important;
-  }
-}
-/* 記事内画像の美しい表示設定 */
-.prose img {
-  width: calc(100% + 40px);
-  margin-left: -20px;
-  margin-right: -20px;
-  height: auto;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  display: block;
-  border-radius: 3px;
-  box-shadow: 0 2px 8px rgba(0, 57, 162, 0.06);
-  
-  /* ↓ ここから追加する3行 ↓ */
-  image-rendering: high-quality;
-  image-rendering: -webkit-optimize-contrast;
-  transition: opacity 0.3s ease;
-  /* ↑ ここまで追加する3行 ↑ */
-}
 
-/* 画像キャプション（イタリック文字）のスタイル */
-.prose p em {
-  display: block;
-  text-align: center;
-  font-size: 0.9rem;
-  opacity: 0.7;
-  margin-top: -2rem;
-  margin-bottom: 3rem;
-  font-style: italic;
-  letter-spacing: 0.02em;
-}
+  h1, h2, h3 {
+    font-family: var(--font-serif-en);
+    color: var(--color-text);
+    font-weight: 400;
+  }
 
-/* レスポンシブ対応 */
-@media (max-width: 768px) {
-  .prose img {
-    /* スマホ: 画面幅いっぱいに表示 */
-    width: 100vw;
+  a {
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  a:hover {
+    opacity: 1.0;
+    border-bottom: 1px solid var(--color-text);
+  }
+
+  section {
+    margin-bottom: 80px;
+  }
+
+  /* 記事見出しのスタイル（余白メインの静かなデザイン） */
+  .prose h2 {
+    font-size: 1.3rem;
+    margin-top: 5rem;
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  .prose h3 {
+    font-size: 1.2rem;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  .prose h4 {
+    font-size: 1.1rem;
+    margin-top: 3.5rem;
+    margin-bottom: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  .prose p {
+    margin-bottom: 1.8rem;
+    color: var(--color-text);
+    line-height: 1.9;
+    text-indent: 1em;
+  }
+
+  .prose blockquote {
+    padding-left: 2rem;
+    margin: 3.5rem 0;
+    opacity: 0.75;
+    font-style: italic;
+    color: var(--color-text);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
     position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
   }
-  
+
+  .prose blockquote::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, 
+      transparent 0%, 
+      var(--color-text) 20%, 
+      var(--color-text) 80%, 
+      transparent 100%);
+    opacity: 0.25;
+  }
+
+  .prose ul, .prose ol {
+    margin: 2.5rem 0;
+    padding-left: 2rem;
+    color: var(--color-text);
+  }
+
+  .prose li {
+    margin-bottom: 0.8rem;
+    line-height: 1.8;
+  }
+
+  .prose strong {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .prose em {
+    font-style: italic;
+    color: var(--color-text);
+    opacity: 0.9;
+  }
+
+  /* 記事内画像の美しい表示設定 */
+  .prose img {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    margin-right: -20px;
+    height: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    display: block;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(0, 57, 162, 0.06);
+    image-rendering: high-quality;
+    image-rendering: -webkit-optimize-contrast;
+    transition: opacity 0.3s ease;
+  }
+
+  /* 画像キャプション（イタリック文字）のスタイル */
   .prose p em {
-    margin-top: -1.5rem;
-    margin-bottom: 2.5rem;
-    font-size: 0.85rem;
+    display: block;
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-top: -2rem;
+    margin-bottom: 3rem;
+    font-style: italic;
+    letter-spacing: 0.02em;
   }
+
   /* 外部リンクの美しい自動識別（サイト全体適用） */
-a[href^="http"]:not([href*="lmxou.me"])::after {
-  content: " ↗";
-  font-size: 0.9em;
-  opacity: 0.6;
-  margin-left: 0.15em;
-  transition: opacity 0.3s ease;
-  vertical-align: text-top;
-  font-family: var(--font-serif-en);
-  letter-spacing: 0;
-}
+  a[href^="http"]:not([href*="lmxou.me"])::after {
+    content: " ↗";
+    font-size: 0.9em;
+    opacity: 0.6;
+    margin-left: 0.15em;
+    transition: opacity 0.3s ease;
+    vertical-align: text-top;
+    font-family: var(--font-serif-en);
+    letter-spacing: 0;
+  }
 
-/* ホバー時の控えめな変化 */
-a[href^="http"]:not([href*="lmxou.me"]):hover::after {
-  opacity: 0.8;
-}
+  /* ホバー時の控えめな変化 */
+  a[href^="http"]:not([href*="lmxou.me"]):hover::after {
+    opacity: 0.8;
+  }
 
-/* 内部リンクには適用しない */
-a[href^="/"]::after,
-a[href^="#"]::after,
-a[href^="mailto:"]::after {
-  content: none;
-}
+  /* 内部リンクには適用しない */
+  a[href^="/"]::after,
+  a[href^="#"]::after,
+  a[href^="mailto:"]::after {
+    content: none;
+  }
 
-/* 記事内での外部リンクの特別な配慮 */
-.prose a[href^="http"]:not([href*="lmxou.me"])::after {
-  font-size: 0.85em;
-  opacity: 0.65;
-  margin-left: 0.13em;
-}
+  /* 記事内での外部リンクの特別な配慮 */
+  .prose a[href^="http"]:not([href*="lmxou.me"])::after {
+    font-size: 0.85em;
+    opacity: 0.65;
+    margin-left: 0.13em;
+  }
 
-}
-    </style>
+  /* レスポンシブデザイン */
+  @media (max-width: 768px) {
+    .container {
+      padding: 40px 15px;
+    }
+    
+    h1 {
+      font-size: 2.5rem !important;
+      letter-spacing: 0.03em !important;
+    }
+    
+    nav li {
+      margin-bottom: 2.5rem !important;
+    }
+
+    .prose img {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .prose p em {
+      margin-top: -1.5rem;
+      margin-bottom: 2.5rem;
+      font-size: 0.85rem;
+    }
+  }
+</style>
+
   </head>
   <body>
     <div class="container">
