@@ -298,17 +298,37 @@ const { title, description } = Astro.props;
     margin-bottom: 2.5rem !important;
   }
 
-  /* スマホでも両端揃えを維持（ガタガタ修正の継続） */
+  /* スマホでの文字サイズ調整（0.98rem基準） */
+  body {
+    font-size: 0.98rem;
+  }
+
   .prose p {
+    font-size: 0.98rem;
+    line-height: 1.87;
     text-align: justify;
     text-justify: inter-ideograph;
     word-break: auto-phrase;
   }
 
   .prose li {
+    font-size: 0.98rem;
     text-align: justify;
     text-justify: inter-ideograph;
     word-break: auto-phrase;
+  }
+
+  /* 見出しサイズの比例調整 */
+  .prose h2 {
+    font-size: 1.23rem;
+  }
+
+  .prose h3 {
+    font-size: 1.13rem;
+  }
+
+  .prose h4 {
+    font-size: 1.03rem;
   }
 
   .prose img {
