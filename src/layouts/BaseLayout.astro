@@ -159,16 +159,18 @@ const { title, description } = Astro.props;
   }
 
   .prose p {
-    margin-bottom: 1.8rem;
-    color: var(--color-text);
-    line-height: 1.9;
-    text-indent: 1em;
-    
-    /* 左右ガタガタ改善のための追加 */
-    text-align: justify;           /* 両端揃え */
-    text-justify: inter-ideograph; /* 日本語に最適化 */
-    word-break: auto-phrase;       /* 自然な改行位置 */
-  }
+  margin-bottom: 1.8rem;
+  color: var(--color-text);
+  line-height: 1.9;
+  text-indent: 1em;
+  
+  /* より自然な両端揃えに修正 */
+  text-align: justify;
+  text-justify: auto;              /* inter-ideograph → auto に変更 */
+  word-break: normal;              /* auto-phrase → normal に変更 */
+  overflow-wrap: break-word;       /* 追加：長い単語の適切な改行 */
+  hyphens: auto;                   /* 追加：ハイフネーション有効化 */
+}
 
   .prose blockquote {
     padding-left: 2rem;
@@ -204,14 +206,16 @@ const { title, description } = Astro.props;
   }
 
   .prose li {
-    margin-bottom: 0.8rem;
-    line-height: 1.8;
-    
-    /* リスト項目にも両端揃えを適用 */
-    text-align: justify;
-    text-justify: inter-ideograph;
-    word-break: auto-phrase;
-  }
+  margin-bottom: 0.8rem;
+  line-height: 1.8;
+  
+  /* リスト項目も同様に修正 */
+  text-align: justify;
+  text-justify: auto;              /* inter-ideograph → auto に変更 */
+  word-break: normal;              /* auto-phrase → normal に変更 */
+  overflow-wrap: break-word;       /* 追加 */
+  hyphens: auto;                   /* 追加 */
+}
 
   .prose strong {
     font-weight: 600;
@@ -308,15 +312,19 @@ const { title, description } = Astro.props;
     font-size: 0.98rem;
     line-height: 1.87;
     text-align: justify;
-    text-justify: inter-ideograph;
-    word-break: auto-phrase;
+    text-justify: auto;            /* inter-ideograph → auto に変更 */
+    word-break: normal;            /* auto-phrase → normal に変更 */
+    overflow-wrap: break-word;     /* 追加 */
+    hyphens: auto;                 /* 追加 */
   }
 
   .prose li {
     font-size: 0.98rem;
     text-align: justify;
-    text-justify: inter-ideograph;
-    word-break: auto-phrase;
+    text-justify: auto;            /* inter-ideograph → auto に変更 */
+    word-break: normal;            /* auto-phrase → normal に変更 */
+    overflow-wrap: break-word;     /* 追加 */
+    hyphens: auto;                 /* 追加 */
   }
 
   /* 見出しサイズの比例調整 */
